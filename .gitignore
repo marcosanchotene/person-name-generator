@@ -1,0 +1,33 @@
+# Build results
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Visual Studio Code
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+.vs/
+.vscode/.ionide/
+*.code-workspace
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folders
+Debug/
+Release/
+
+# Temporary files
+*.tmp
+*.temp
