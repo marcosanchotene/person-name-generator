@@ -164,4 +164,112 @@ internal class PersonNameGeneratorResources {
             return ResourceManager.GetString("NumberOfNamesDescription", resourceCulture);
         }
     }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Localization.
+    /// </summary>
+    internal static string LocalizationTitle {
+        get {
+            return ResourceManager.GetString("LocalizationTitle", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Select the language/region for the generated names.
+    /// </summary>
+    internal static string LocalizationDescription {
+        get {
+            return ResourceManager.GetString("LocalizationDescription", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Random.
+    /// </summary>
+    internal static string LocalizationRandom {
+        get {
+            return ResourceManager.GetString("LocalizationRandom", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to English (American).
+    /// </summary>
+    internal static string LocalizationEnglishAmerican {
+        get {
+            return ResourceManager.GetString("LocalizationEnglishAmerican", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to English (British).
+    /// </summary>
+    internal static string LocalizationEnglishBritish {
+        get {
+            return ResourceManager.GetString("LocalizationEnglishBritish", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to English (Australian).
+    /// </summary>
+    internal static string LocalizationEnglishAustralian {
+        get {
+            return ResourceManager.GetString("LocalizationEnglishAustralian", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to German.
+    /// </summary>
+    internal static string LocalizationGerman {
+        get {
+            return ResourceManager.GetString("LocalizationGerman", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to French.
+    /// </summary>
+    internal static string LocalizationFrench {
+        get {
+            return ResourceManager.GetString("LocalizationFrench", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Spanish.
+    /// </summary>
+    internal static string LocalizationSpanish {
+        get {
+            return ResourceManager.GetString("LocalizationSpanish", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Portuguese (Brazilian).
+    /// </summary>
+    internal static string LocalizationPortugueseBrazilian {
+        get {
+            return ResourceManager.GetString("LocalizationPortugueseBrazilian", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Japanese.
+    /// </summary>
+    internal static string LocalizationJapanese {
+        get {
+            return ResourceManager.GetString("LocalizationJapanese", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Chinese (Simplified).
+    /// </summary>
+    internal static string LocalizationChineseSimplified {
+        get {
+            return ResourceManager.GetString("LocalizationChineseSimplified", resourceCulture);
+        }
+    }
 }

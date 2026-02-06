@@ -12,6 +12,20 @@ public enum Gender
     Female
 }
 
+public enum Localization
+{
+    Random,
+    EnglishAmerican,
+    EnglishBritish,
+    EnglishAustralian,
+    German,
+    French,
+    Spanish,
+    PortugueseBrazilian,
+    Japanese,
+    ChineseSimplified
+}
+
 [Export(typeof(IGuiTool))]
 [Name("PersonNameGenerator")]                                                         // A unique, internal name of the tool.
 [ToolDisplayInformation(
@@ -41,6 +55,11 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
         = new(
             name: $"{nameof(PersonNameGeneratorGui)}.{nameof(gender)}",
             defaultValue: Gender.Random);
+
+    private static readonly SettingDefinition<Localization> localization
+        = new(
+            name: $"{nameof(PersonNameGeneratorGui)}.{nameof(localization)}",
+            defaultValue: Localization.EnglishAmerican);
 
     private static readonly SettingDefinition<int> numberOfNames
         = new(
@@ -95,6 +114,24 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
                                             Item(PersonNameGeneratorResources.GenderMale, Gender.Male),
                                             Item(PersonNameGeneratorResources.GenderFemale, Gender.Female)),
                                     Setting()
+                                        .Icon("FluentSystemIcons", '\uF0A7')
+                                        .Title(PersonNameGeneratorResources.LocalizationTitle)
+                                        .Description(PersonNameGeneratorResources.LocalizationDescription)
+                                        .Handle(
+                                            _settingsProvider,
+                                            localization,
+                                            OnLocalizationChanged,
+                                            Item(PersonNameGeneratorResources.LocalizationRandom, Localization.Random),
+                                            Item(PersonNameGeneratorResources.LocalizationEnglishAmerican, Localization.EnglishAmerican),
+                                            Item(PersonNameGeneratorResources.LocalizationEnglishBritish, Localization.EnglishBritish),
+                                            Item(PersonNameGeneratorResources.LocalizationEnglishAustralian, Localization.EnglishAustralian),
+                                            Item(PersonNameGeneratorResources.LocalizationGerman, Localization.German),
+                                            Item(PersonNameGeneratorResources.LocalizationFrench, Localization.French),
+                                            Item(PersonNameGeneratorResources.LocalizationSpanish, Localization.Spanish),
+                                            Item(PersonNameGeneratorResources.LocalizationPortugueseBrazilian, Localization.PortugueseBrazilian),
+                                            Item(PersonNameGeneratorResources.LocalizationJapanese, Localization.Japanese),
+                                            Item(PersonNameGeneratorResources.LocalizationChineseSimplified, Localization.ChineseSimplified)),
+                                    Setting()
                                         .Icon("FluentSystemIcons", '\uF57D')
                                         .Title(PersonNameGeneratorResources.NumberOfNamesTitle)
                                         .Description(PersonNameGeneratorResources.NumberOfNamesDescription)
@@ -122,18 +159,44 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
     private string GenerateRandomName()
     {
         var selectedGender = _settingsProvider.GetSetting(gender);
+        var selectedLocalization = _settingsProvider.GetSetting(localization);
+        
+        // Determine the locale string
+        var locale = selectedLocalization switch
+        {
+            Localization.Random => GetRandomLocale(),
+            Localization.EnglishAmerican => "en_US",
+            Localization.EnglishBritish => "en_GB",
+            Localization.EnglishAustralian => "en_AU",
+            Localization.German => "de",
+            Localization.French => "fr",
+            Localization.Spanish => "es",
+            Localization.PortugueseBrazilian => "pt_BR",
+            Localization.Japanese => "ja",
+            Localization.ChineseSimplified => "zh_CN",
+            _ => "en_US"
+        };
+
+        // Create a new Faker instance with the selected locale
+        var faker = new Faker(locale);
         
         var bogusGender = selectedGender switch
         {
             Gender.Male => Bogus.DataSets.Name.Gender.Male,
             Gender.Female => Bogus.DataSets.Name.Gender.Female,
-            _ => _faker.Random.Bool() ? Bogus.DataSets.Name.Gender.Male : Bogus.DataSets.Name.Gender.Female
+            _ => faker.Random.Bool() ? Bogus.DataSets.Name.Gender.Male : Bogus.DataSets.Name.Gender.Female
         };
 
-        var firstName = _faker.Name.FirstName(bogusGender);
-        var lastName = _faker.Name.LastName();
+        var firstName = faker.Name.FirstName(bogusGender);
+        var lastName = faker.Name.LastName();
 
         return $"{firstName} {lastName}";
+    }
+
+    private string GetRandomLocale()
+    {
+        var locales = new[] { "en_US", "en_GB", "en_AU", "de", "fr", "es", "pt_BR", "ja", "zh_CN" };
+        return locales[_faker.Random.Int(0, locales.Length - 1)];
     }
 
     private void OnGenerateButtonClick()
@@ -143,6 +206,11 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
     }
 
     private void OnGenderChanged(Gender value)
+    {
+        OnGenerateButtonClick();
+    }
+
+    private void OnLocalizationChanged(Localization value)
     {
         OnGenerateButtonClick();
     }

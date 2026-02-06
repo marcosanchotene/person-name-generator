@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Names</value>
+    <value>Person Name</value>
     <comment/>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>Names</value>
+    <value>Person Name</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>Generate random names.</value>
+    <value>Generate random names</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Generate random names for testing</value>
+    <value>Generate random person names for testing</value>
     <comment/>
   </data>
   <data name="PersonNameGeneratorLabel" xml:space="preserve">
@@ -171,6 +171,54 @@
   </data>
   <data name="NumberOfNamesDescription" xml:space="preserve">
     <value>How many names to generate</value>
+    <comment/>
+  </data>
+  <data name="LocalizationTitle" xml:space="preserve">
+    <value>Localization</value>
+    <comment/>
+  </data>
+  <data name="LocalizationDescription" xml:space="preserve">
+    <value>Select the language/region for the generated names</value>
+    <comment/>
+  </data>
+  <data name="LocalizationRandom" xml:space="preserve">
+    <value>Random</value>
+    <comment/>
+  </data>
+  <data name="LocalizationEnglishAmerican" xml:space="preserve">
+    <value>English (American)</value>
+    <comment/>
+  </data>
+  <data name="LocalizationEnglishBritish" xml:space="preserve">
+    <value>English (British)</value>
+    <comment/>
+  </data>
+  <data name="LocalizationEnglishAustralian" xml:space="preserve">
+    <value>English (Australian)</value>
+    <comment/>
+  </data>
+  <data name="LocalizationGerman" xml:space="preserve">
+    <value>German</value>
+    <comment/>
+  </data>
+  <data name="LocalizationFrench" xml:space="preserve">
+    <value>French</value>
+    <comment/>
+  </data>
+  <data name="LocalizationSpanish" xml:space="preserve">
+    <value>Spanish</value>
+    <comment/>
+  </data>
+  <data name="LocalizationPortugueseBrazilian" xml:space="preserve">
+    <value>Portuguese (Brazilian)</value>
+    <comment/>
+  </data>
+  <data name="LocalizationJapanese" xml:space="preserve">
+    <value>Japanese</value>
+    <comment/>
+  </data>
+  <data name="LocalizationChineseSimplified" xml:space="preserve">
+    <value>Chinese (Simplified)</value>
     <comment/>
   </data>
 </root>
