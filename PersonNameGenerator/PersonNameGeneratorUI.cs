@@ -42,6 +42,11 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
             name: $"{nameof(PersonNameGeneratorGui)}.{nameof(gender)}",
             defaultValue: Gender.Random);
 
+    private static readonly SettingDefinition<int> numberOfNames
+        = new(
+            name: $"{nameof(PersonNameGeneratorGui)}.{nameof(numberOfNames)}",
+            defaultValue: 1);
+
     private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _outputText = MultiLineTextInput();
     private readonly Faker _faker = new();
@@ -88,7 +93,18 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
                                             OnGenderChanged,
                                             Item(PersonNameGeneratorResources.GenderRandom, Gender.Random),
                                             Item(PersonNameGeneratorResources.GenderMale, Gender.Male),
-                                            Item(PersonNameGeneratorResources.GenderFemale, Gender.Female))))),
+                                            Item(PersonNameGeneratorResources.GenderFemale, Gender.Female)),
+                                    Setting()
+                                        .Icon("FluentSystemIcons", '\uF57D')
+                                        .Title(PersonNameGeneratorResources.NumberOfNamesTitle)
+                                        .Description(PersonNameGeneratorResources.NumberOfNamesDescription)
+                                        .InteractiveElement(
+                                            NumberInput()
+                                                .HideCommandBar()
+                                                .Minimum(1)
+                                                .Maximum(1000)
+                                                .OnValueChanged(OnNumberOfNamesChanged)
+                                                .Value(_settingsProvider.GetSetting(numberOfNames)))))),
 
                 Cell(
                     GridRow.Results,
@@ -122,13 +138,32 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
 
     private void OnGenerateButtonClick()
     {
-        var name = GenerateRandomName();
-        _outputText.Text(name);
+        int count = _settingsProvider.GetSetting(numberOfNames);
+        GenerateNamesInternal(count);
     }
 
     private void OnGenderChanged(Gender value)
     {
         OnGenerateButtonClick();
+    }
+
+    private void OnNumberOfNamesChanged(double value)
+    {
+        int count = (int)value;
+        _settingsProvider.SetSetting(numberOfNames, count);
+        GenerateNamesInternal(count);
+    }
+
+    private void GenerateNamesInternal(int count)
+    {
+        var names = new List<string>();
+        
+        for (int i = 0; i < count; i++)
+        {
+            names.Add(GenerateRandomName());
+        }
+        
+        _outputText.Text(string.Join(Environment.NewLine, names));
     }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)

@@ -146,4 +146,22 @@ internal class PersonNameGeneratorResources {
             return ResourceManager.GetString("ShortDisplayTitle", resourceCulture);
         }
     }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Number of Names.
+    /// </summary>
+    internal static string NumberOfNamesTitle {
+        get {
+            return ResourceManager.GetString("NumberOfNamesTitle", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to How many names to generate.
+    /// </summary>
+    internal static string NumberOfNamesDescription {
+        get {
+            return ResourceManager.GetString("NumberOfNamesDescription", resourceCulture);
+        }
+    }
 }

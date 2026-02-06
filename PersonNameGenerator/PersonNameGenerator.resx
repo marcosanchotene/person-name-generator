@@ -165,4 +165,12 @@
     <value>Refresh</value>
     <comment/>
   </data>
+  <data name="NumberOfNamesTitle" xml:space="preserve">
+    <value>Number of Names</value>
+    <comment/>
+  </data>
+  <data name="NumberOfNamesDescription" xml:space="preserve">
+    <value>How many names to generate</value>
+    <comment/>
+  </data>
 </root>
