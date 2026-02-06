@@ -133,7 +133,7 @@
     <value>This extension generates random names for testing and mock data.</value>
     <comment/>
   </data>
-  <data name="FakerLabel" xml:space="preserve">
+  <data name="PersonNameGeneratorLabel" xml:space="preserve">
     <value>Generate a random name</value>
     <comment/>
   </data>

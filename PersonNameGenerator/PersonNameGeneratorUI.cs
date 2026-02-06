@@ -3,21 +3,21 @@ using System.ComponentModel.Composition;
 using static DevToys.Api.GUI;
 using Bogus;
 
-namespace FakerExtension;
+namespace PersonNameGenerator;
 
 [Export(typeof(IGuiTool))]
-[Name("Names")]                                                         // A unique, internal name of the tool.
+[Name("PersonNameGenerator")]                                                         // A unique, internal name of the tool.
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",                                       // This font is available by default in DevToys
     IconGlyph = '\uF5BE',                                                     // Person/contact icon (represents names)
     GroupName = PredefinedCommonToolGroupNames.Converters,                    // The group in which the tool will appear in the side bar.
-    ResourceManagerAssemblyIdentifier = nameof(FakerExtensionResourceAssemblyIdentifier), // The Resource Assembly Identifier to use
-    ResourceManagerBaseName = "Faker.Faker",                      // The full name (including namespace) of the resource file containing our localized texts
-    ShortDisplayTitleResourceName = nameof(FakerExtension.ShortDisplayTitle),    // The name of the resource to use for the short display title
-    LongDisplayTitleResourceName = nameof(FakerExtension.LongDisplayTitle),
-    DescriptionResourceName = nameof(FakerExtension.Description),
-    AccessibleNameResourceName = nameof(FakerExtension.AccessibleName))]
-internal sealed class FakerExtensionGui : IGuiTool
+    ResourceManagerAssemblyIdentifier = nameof(PersonNameGeneratorResourceAssemblyIdentifier), // The Resource Assembly Identifier to use
+    ResourceManagerBaseName = "PersonNameGenerator.PersonNameGenerator",                      // The full name (including namespace) of the resource file containing our localized texts
+    ShortDisplayTitleResourceName = nameof(PersonNameGeneratorResources.ShortDisplayTitle),    // The name of the resource to use for the short display title
+    LongDisplayTitleResourceName = nameof(PersonNameGeneratorResources.LongDisplayTitle),
+    DescriptionResourceName = nameof(PersonNameGeneratorResources.Description),
+    AccessibleNameResourceName = nameof(PersonNameGeneratorResources.AccessibleName))]
+internal sealed class PersonNameGeneratorGui : IGuiTool
 {
     private enum GridColumn
     {
@@ -33,7 +33,7 @@ internal sealed class FakerExtensionGui : IGuiTool
     private readonly IUIMultiLineTextInput _outputText = MultiLineTextInput();
 
     [System.ComponentModel.Composition.ImportingConstructor]
-    public FakerExtensionGui()
+    public PersonNameGeneratorGui()
     {
         // Initialize using the same handler as the Refresh button.
         OnGenerateButtonClick();
@@ -59,7 +59,7 @@ internal sealed class FakerExtensionGui : IGuiTool
                         .Vertical()
                         .LargeSpacing()
                         .WithChildren(
-                            Label().Text(FakerExtension.FakerLabel))),
+                            Label().Text(PersonNameGeneratorResources.FakerLabel))),
 
                 Cell(
                     GridRow.Results,

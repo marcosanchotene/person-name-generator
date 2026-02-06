@@ -1,11 +1,11 @@
 using DevToys.Api;
 using System.ComponentModel.Composition;
 
-namespace FakerExtension;
+namespace PersonNameGenerator;
 
 [Export(typeof(IResourceAssemblyIdentifier))]
-[Name(nameof(FakerExtensionResourceAssemblyIdentifier))]
-internal sealed class FakerExtensionResourceAssemblyIdentifier : IResourceAssemblyIdentifier
+[Name(nameof(PersonNameGeneratorResourceAssemblyIdentifier))]
+internal sealed class PersonNameGeneratorResourceAssemblyIdentifier : IResourceAssemblyIdentifier
 {
     public ValueTask<FontDefinition[]> GetFontDefinitionsAsync()
     {

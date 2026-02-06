@@ -1,14 +1,14 @@
-namespace FakerExtension;
+namespace PersonNameGenerator;
 using System;
 
-internal class FakerExtension {
+internal class PersonNameGeneratorResources {
 
     private static global::System.Resources.ResourceManager resourceMan;
 
     private static global::System.Globalization.CultureInfo resourceCulture;
 
     [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-    internal FakerExtension() {
+    internal PersonNameGeneratorResources() {
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ internal class FakerExtension {
     internal static global::System.Resources.ResourceManager ResourceManager {
         get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Faker.Faker", typeof(FakerExtension).Assembly);
+                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PersonNameGenerator.PersonNameGenerator", typeof(PersonNameGeneratorResources).Assembly);
                 resourceMan = temp;
             }
             return resourceMan;
@@ -60,9 +60,9 @@ internal class FakerExtension {
     /// <summary>
     ///   Looks up a localized string similar to Hello World!.
     /// </summary>
-    internal static string FakerLabel {
+    internal static string PersonNameGeneratorLabel {
         get {
-            return ResourceManager.GetString("FakerLabel", resourceCulture);
+            return ResourceManager.GetString("PersonNameGenerator", resourceCulture);
         }
     }
 
