@@ -58,11 +58,74 @@ internal class PersonNameGeneratorResources {
     }
 
     /// <summary>
-    ///   Looks up a localized string similar to Hello World!.
+    ///   Looks up a localized string similar to Generate a random name.
     /// </summary>
     internal static string PersonNameGeneratorLabel {
         get {
-            return ResourceManager.GetString("PersonNameGenerator", resourceCulture);
+            return ResourceManager.GetString("PersonNameGeneratorLabel", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Configuration.
+    /// </summary>
+    internal static string ConfigurationTitle {
+        get {
+            return ResourceManager.GetString("ConfigurationTitle", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Gender.
+    /// </summary>
+    internal static string GenderTitle {
+        get {
+            return ResourceManager.GetString("GenderTitle", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Select the gender for the generated name.
+    /// </summary>
+    internal static string GenderDescription {
+        get {
+            return ResourceManager.GetString("GenderDescription", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Random.
+    /// </summary>
+    internal static string GenderRandom {
+        get {
+            return ResourceManager.GetString("GenderRandom", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Male.
+    /// </summary>
+    internal static string GenderMale {
+        get {
+            return ResourceManager.GetString("GenderMale", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Female.
+    /// </summary>
+    internal static string GenderFemale {
+        get {
+            return ResourceManager.GetString("GenderFemale", resourceCulture);
+        }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Refresh.
+    /// </summary>
+    internal static string Refresh {
+        get {
+            return ResourceManager.GetString("Refresh", resourceCulture);
         }
     }
 

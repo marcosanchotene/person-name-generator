@@ -5,6 +5,13 @@ using Bogus;
 
 namespace PersonNameGenerator;
 
+public enum Gender
+{
+    Random,
+    Male,
+    Female
+}
+
 [Export(typeof(IGuiTool))]
 [Name("PersonNameGenerator")]                                                         // A unique, internal name of the tool.
 [ToolDisplayInformation(
@@ -30,11 +37,19 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
         Results
     }
 
+    private static readonly SettingDefinition<Gender> gender
+        = new(
+            name: $"{nameof(PersonNameGeneratorGui)}.{nameof(gender)}",
+            defaultValue: Gender.Random);
+
+    private readonly ISettingsProvider _settingsProvider;
     private readonly IUIMultiLineTextInput _outputText = MultiLineTextInput();
+    private readonly Faker _faker = new();
 
     [System.ComponentModel.Composition.ImportingConstructor]
-    public PersonNameGeneratorGui()
+    public PersonNameGeneratorGui(ISettingsProvider settingsProvider)
     {
+        _settingsProvider = settingsProvider;
         // Initialize using the same handler as the Refresh button.
         OnGenerateButtonClick();
     }
@@ -59,7 +74,21 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
                         .Vertical()
                         .LargeSpacing()
                         .WithChildren(
-                            Label().Text(PersonNameGeneratorResources.PersonNameGeneratorLabel))),
+                            Stack()
+                                .Vertical()
+                                .WithChildren(
+                                    Label().Text(PersonNameGeneratorResources.ConfigurationTitle),
+                                    Setting()
+                                        .Icon("FluentSystemIcons", '\uEB1F')
+                                        .Title(PersonNameGeneratorResources.GenderTitle)
+                                        .Description(PersonNameGeneratorResources.GenderDescription)
+                                        .Handle(
+                                            _settingsProvider,
+                                            gender,
+                                            OnGenderChanged,
+                                            Item(PersonNameGeneratorResources.GenderRandom, Gender.Random),
+                                            Item(PersonNameGeneratorResources.GenderMale, Gender.Male),
+                                            Item(PersonNameGeneratorResources.GenderFemale, Gender.Female))))),
 
                 Cell(
                     GridRow.Results,
@@ -71,20 +100,35 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
                         .CommandBarExtraContent(
                             Button()
                                 .Icon("FluentSystemIcons", '\uF13D')
-                                .Text("Refresh")
+                                .Text(PersonNameGeneratorResources.Refresh)
                                 .OnClick(OnGenerateButtonClick)))));
-
-    private readonly Faker _faker = new();
 
     private string GenerateRandomName()
     {
-        return _faker.Name.FullName();
+        var selectedGender = _settingsProvider.GetSetting(gender);
+        
+        var bogusGender = selectedGender switch
+        {
+            Gender.Male => Bogus.DataSets.Name.Gender.Male,
+            Gender.Female => Bogus.DataSets.Name.Gender.Female,
+            _ => _faker.Random.Bool() ? Bogus.DataSets.Name.Gender.Male : Bogus.DataSets.Name.Gender.Female
+        };
+
+        var firstName = _faker.Name.FirstName(bogusGender);
+        var lastName = _faker.Name.LastName();
+
+        return $"{firstName} {lastName}";
     }
 
     private void OnGenerateButtonClick()
     {
         var name = GenerateRandomName();
         _outputText.Text(name);
+    }
+
+    private void OnGenderChanged(Gender value)
+    {
+        OnGenerateButtonClick();
     }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)

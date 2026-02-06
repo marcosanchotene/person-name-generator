@@ -137,4 +137,32 @@
     <value>Generate a random name</value>
     <comment/>
   </data>
+  <data name="ConfigurationTitle" xml:space="preserve">
+    <value>Configuration</value>
+    <comment/>
+  </data>
+  <data name="GenderTitle" xml:space="preserve">
+    <value>Gender</value>
+    <comment/>
+  </data>
+  <data name="GenderDescription" xml:space="preserve">
+    <value>Select the gender for the generated name</value>
+    <comment/>
+  </data>
+  <data name="GenderRandom" xml:space="preserve">
+    <value>Random</value>
+    <comment/>
+  </data>
+  <data name="GenderMale" xml:space="preserve">
+    <value>Male</value>
+    <comment/>
+  </data>
+  <data name="GenderFemale" xml:space="preserve">
+    <value>Female</value>
+    <comment/>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment/>
+  </data>
 </root>
