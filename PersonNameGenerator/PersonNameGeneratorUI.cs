@@ -27,14 +27,14 @@ public enum Localization
 }
 
 [Export(typeof(IGuiTool))]
-[Name("PersonNameGenerator")]                                                         // A unique, internal name of the tool.
+[Name("PersonNameGenerator")]
 [ToolDisplayInformation(
-    IconFontName = "FluentSystemIcons",                                       // This font is available by default in DevToys
-    IconGlyph = '\uF5BE',                                                     // Person/contact icon (represents names)
-    GroupName = PredefinedCommonToolGroupNames.Generators,                    // The group in which the tool will appear in the side bar.
-    ResourceManagerAssemblyIdentifier = nameof(PersonNameGeneratorResourceAssemblyIdentifier), // The Resource Assembly Identifier to use
-    ResourceManagerBaseName = "PersonNameGenerator.PersonNameGenerator",                      // The full name (including namespace) of the resource file containing our localized texts
-    ShortDisplayTitleResourceName = nameof(PersonNameGeneratorResources.ShortDisplayTitle),    // The name of the resource to use for the short display title
+    IconFontName = "FluentSystemIcons",
+    IconGlyph = '\uF5BE',
+    GroupName = PredefinedCommonToolGroupNames.Generators,
+    ResourceManagerAssemblyIdentifier = nameof(PersonNameGeneratorResourceAssemblyIdentifier),
+    ResourceManagerBaseName = "PersonNameGenerator.PersonNameGenerator",
+    ShortDisplayTitleResourceName = nameof(PersonNameGeneratorResources.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(PersonNameGeneratorResources.LongDisplayTitle),
     DescriptionResourceName = nameof(PersonNameGeneratorResources.Description),
     AccessibleNameResourceName = nameof(PersonNameGeneratorResources.AccessibleName))]
@@ -177,7 +177,6 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
             _ => "en_US"
         };
 
-        // Create a new Faker instance with the selected locale
         var faker = new Faker(locale);
         
         var bogusGender = selectedGender switch

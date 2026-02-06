@@ -40,7 +40,7 @@ internal class PersonNameGeneratorResources {
     }
 
     /// <summary>
-    ///   Looks up a localized string similar to A &quot;Hello World&quot; extension for DevToys.
+    ///   Looks up a localized string similar to Generate random names.
     /// </summary>
     internal static string AccessibleName {
         get {
@@ -49,7 +49,7 @@ internal class PersonNameGeneratorResources {
     }
 
     /// <summary>
-    ///   Looks up a localized string similar to A sample extension.
+    ///   Looks up a localized string similar to Generate random person names for testing.
     /// </summary>
     internal static string Description {
         get {
@@ -130,7 +130,7 @@ internal class PersonNameGeneratorResources {
     }
 
     /// <summary>
-    ///   Looks up a localized string similar to My Awesome Extension.
+    ///   Looks up a localized string similar to Person Name.
     /// </summary>
     internal static string LongDisplayTitle {
         get {
@@ -139,7 +139,7 @@ internal class PersonNameGeneratorResources {
     }
 
     /// <summary>
-    ///   Looks up a localized string similar to My Extension.
+    ///   Looks up a localized string similar to Person Name.
     /// </summary>
     internal static string ShortDisplayTitle {
         get {
