@@ -10,7 +10,7 @@ namespace PersonNameGenerator;
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",                                       // This font is available by default in DevToys
     IconGlyph = '\uF5BE',                                                     // Person/contact icon (represents names)
-    GroupName = PredefinedCommonToolGroupNames.Converters,                    // The group in which the tool will appear in the side bar.
+    GroupName = PredefinedCommonToolGroupNames.Generators,                    // The group in which the tool will appear in the side bar.
     ResourceManagerAssemblyIdentifier = nameof(PersonNameGeneratorResourceAssemblyIdentifier), // The Resource Assembly Identifier to use
     ResourceManagerBaseName = "PersonNameGenerator.PersonNameGenerator",                      // The full name (including namespace) of the resource file containing our localized texts
     ShortDisplayTitleResourceName = nameof(PersonNameGeneratorResources.ShortDisplayTitle),    // The name of the resource to use for the short display title
@@ -59,7 +59,7 @@ internal sealed class PersonNameGeneratorGui : IGuiTool
                         .Vertical()
                         .LargeSpacing()
                         .WithChildren(
-                            Label().Text(PersonNameGeneratorResources.FakerLabel))),
+                            Label().Text(PersonNameGeneratorResources.PersonNameGeneratorLabel))),
 
                 Cell(
                     GridRow.Results,
