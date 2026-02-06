@@ -1,6 +1,7 @@
 using DevToys.Api;
 using System.ComponentModel.Composition;
 using static DevToys.Api.GUI;
+using Bogus;
 
 namespace FakerExtension;
 
@@ -34,6 +35,7 @@ internal sealed class FakerExtensionGui : IGuiTool
     [System.ComponentModel.Composition.ImportingConstructor]
     public FakerExtensionGui()
     {
+        // Initialize using the same handler as the Refresh button.
         OnGenerateButtonClick();
     }
 
@@ -57,17 +59,11 @@ internal sealed class FakerExtensionGui : IGuiTool
                         .Vertical()
                         .LargeSpacing()
                         .WithChildren(
-
-                            Stack()
-                                .Vertical()
-                                .WithChildren(
-
-                                    Label().Text(FakerExtension.FakerLabel)))),
+                            Label().Text(FakerExtension.FakerLabel))),
 
                 Cell(
                     GridRow.Results,
                     GridColumn.Stretch,
-
                     _outputText
                         .Title("Output")
                         .ReadOnly()
@@ -78,22 +74,17 @@ internal sealed class FakerExtensionGui : IGuiTool
                                 .Text("Refresh")
                                 .OnClick(OnGenerateButtonClick)))));
 
-    private static readonly string[] FirstNames = { "Alice", "Bob", "Charlie", "Dana", "Eve" };
-    private static readonly string[] LastNames = { "Smith", "Johnson", "Brown", "Garcia", "Lee" };
-    private readonly Random _rng = new();
+    private readonly Faker _faker = new();
 
     private string GenerateRandomName()
     {
-        var first = FirstNames[_rng.Next(FirstNames.Length)];
-        var last = LastNames[_rng.Next(LastNames.Length)];
-        return $"{first} {last}";
+        return _faker.Name.FullName();
     }
 
-    private System.Threading.Tasks.ValueTask OnGenerateButtonClick()
+    private void OnGenerateButtonClick()
     {
         var name = GenerateRandomName();
         _outputText.Text(name);
-        return default;
     }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
