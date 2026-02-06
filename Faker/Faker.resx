@@ -118,23 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ShortDisplayTitle" xml:space="preserve">
-    <value>Faker</value>
+    <value>Names</value>
     <comment/>
   </data>
   <data name="LongDisplayTitle" xml:space="preserve">
-    <value>Faker extension</value>
+    <value>Names</value>
     <comment/>
   </data>
   <data name="AccessibleName" xml:space="preserve">
-    <value>An extension to generate test data.</value>
+    <value>Generate random names.</value>
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>This extension generates random test data commonly needed when manually testing application.</value>
+    <value>This extension generates random names for testing and mock data.</value>
     <comment/>
   </data>
   <data name="FakerLabel" xml:space="preserve">
-    <value>Faker label</value>
+    <value>Generate a random name</value>
     <comment/>
   </data>
 </root>

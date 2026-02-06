@@ -6,10 +6,10 @@ using Bogus;
 namespace FakerExtension;
 
 [Export(typeof(IGuiTool))]
-[Name("FakerExtension")]                                                         // A unique, internal name of the tool.
+[Name("Names")]                                                         // A unique, internal name of the tool.
 [ToolDisplayInformation(
     IconFontName = "FluentSystemIcons",                                       // This font is available by default in DevToys
-    IconGlyph = '\uE670',                                                     // An icon that represents a pizza
+    IconGlyph = '\uF5BE',                                                     // Person/contact icon (represents names)
     GroupName = PredefinedCommonToolGroupNames.Converters,                    // The group in which the tool will appear in the side bar.
     ResourceManagerAssemblyIdentifier = nameof(FakerExtensionResourceAssemblyIdentifier), // The Resource Assembly Identifier to use
     ResourceManagerBaseName = "Faker.Faker",                      // The full name (including namespace) of the resource file containing our localized texts
