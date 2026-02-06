@@ -31,6 +31,12 @@ internal sealed class FakerExtensionGui : IGuiTool
 
     private readonly IUIMultiLineTextInput _outputText = MultiLineTextInput();
 
+    [System.ComponentModel.Composition.ImportingConstructor]
+    public FakerExtensionGui()
+    {
+        OnGenerateButtonClick();
+    }
+
     public UIToolView View
         => new(
             isScrollable: true,
@@ -87,7 +93,7 @@ internal sealed class FakerExtensionGui : IGuiTool
     {
         var name = GenerateRandomName();
         _outputText.Text(name);
-        return new System.Threading.Tasks.ValueTask();
+        return default;
     }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
