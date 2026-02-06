@@ -18,67 +18,76 @@ namespace FakerExtension;
     AccessibleNameResourceName = nameof(FakerExtension.AccessibleName))]
 internal sealed class FakerExtensionGui : IGuiTool
 {
-    // public UIToolView View => new(Label().Style(UILabelStyle.BodyStrong).Text(FakerExtension.FakerLabel));
+    private enum GridColumn
+    {
+        Stretch
+    }
+
+    private enum GridRow
+    {
+        Settings,
+        Results
+    }
+
+    private readonly IUIMultiLineTextInput _outputText = MultiLineTextInput();
 
     public UIToolView View
-    {
-        get
-        {
-            var root = DevToys.Api.GUI.Stack();
-            DevToys.Api.GUI.Vertical(root);
-            DevToys.Api.GUI.MediumSpacing(root);
+        => new(
+            isScrollable: true,
+            Grid()
+                .ColumnLargeSpacing()
+                .RowLargeSpacing()
+                .Rows(
+                    (GridRow.Settings, Auto),
+                    (GridRow.Results, new UIGridLength(1, UIGridUnitType.Fraction)))
+                .Columns(
+                    (GridColumn.Stretch, new UIGridLength(1, UIGridUnitType.Fraction)))
 
-            var title = DevToys.Api.GUI.Label();
-            DevToys.Api.GUI.Text(title, FakerExtension.FakerLabel);
-            DevToys.Api.GUI.Style(title, UILabelStyle.BodyStrong);
+            .Cells(
+                Cell(
+                    GridRow.Settings,
+                    GridColumn.Stretch,
+                    Stack()
+                        .Vertical()
+                        .LargeSpacing()
+                        .WithChildren(
 
-            var buttons = DevToys.Api.GUI.Stack();
-            DevToys.Api.GUI.Horizontal(buttons);
-            DevToys.Api.GUI.SmallSpacing(buttons);
+                            Stack()
+                                .Vertical()
+                                .WithChildren(
 
-            var generate = DevToys.Api.GUI.Button();
-            DevToys.Api.GUI.Text(generate, "Generate");
+                                    Label().Text(FakerExtension.FakerLabel)))),
 
-            var copy = DevToys.Api.GUI.Button();
-            DevToys.Api.GUI.Text(copy, "Copy");
+                Cell(
+                    GridRow.Results,
+                    GridColumn.Stretch,
 
-            var output = DevToys.Api.GUI.Label();
-            DevToys.Api.GUI.Text(output, "Generated name will appear here");
-            DevToys.Api.GUI.Style(output, UILabelStyle.Body);
-
-            DevToys.Api.GUI.OnClick(generate, () =>
-            {
-                var name = GenerateRandomName();
-                _lastGeneratedName = name;
-                DevToys.Api.GUI.Text(output, name);
-                return new System.Threading.Tasks.ValueTask();
-            });
-
-            DevToys.Api.GUI.OnClick(copy, () =>
-            {
-                // Clipboard integration can be added later via IClipboard service.
-                // For now just re-display the last generated name.
-                DevToys.Api.GUI.Text(output, _lastGeneratedName ?? string.Empty);
-                return new System.Threading.Tasks.ValueTask();
-            });
-
-            DevToys.Api.GUI.WithChildren(buttons, generate, copy);
-            DevToys.Api.GUI.WithChildren(root, title, buttons, output);
-
-            return new UIToolView(root);
-        }
-    }
+                    _outputText
+                        .Title("Output")
+                        .ReadOnly()
+                        .AlwaysWrap()
+                        .CommandBarExtraContent(
+                            Button()
+                                .Icon("FluentSystemIcons", '\uF13D')
+                                .Text("Refresh")
+                                .OnClick(OnGenerateButtonClick)))));
 
     private static readonly string[] FirstNames = { "Alice", "Bob", "Charlie", "Dana", "Eve" };
     private static readonly string[] LastNames = { "Smith", "Johnson", "Brown", "Garcia", "Lee" };
     private readonly Random _rng = new();
-    private string? _lastGeneratedName;
 
     private string GenerateRandomName()
     {
         var first = FirstNames[_rng.Next(FirstNames.Length)];
         var last = LastNames[_rng.Next(LastNames.Length)];
         return $"{first} {last}";
+    }
+
+    private System.Threading.Tasks.ValueTask OnGenerateButtonClick()
+    {
+        var name = GenerateRandomName();
+        _outputText.Text(name);
+        return new System.Threading.Tasks.ValueTask();
     }
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
