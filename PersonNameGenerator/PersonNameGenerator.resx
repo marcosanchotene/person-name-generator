@@ -130,7 +130,7 @@
     <comment/>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>This extension generates random names for testing and mock data.</value>
+    <value>Generate random names for testing</value>
     <comment/>
   </data>
   <data name="PersonNameGeneratorLabel" xml:space="preserve">
